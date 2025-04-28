@@ -28,8 +28,8 @@ namespace EShopService_drugaedycja.Controllers
             new Product {Name = "Phone", Price = 25.56m},
             new Product {Name = "Computer", Price = 4000},
         };
-            _productServiceMock.Setup(service => service.ShowAllProducts()).Returns(products);
-            var result = _controller.ShowAllProducts();
+            _productServiceMock.Setup(service => service.ShowAllProductsAsync()).Returns(products);
+            var result =  _controller.ShowAllProductsAsync();
             var OkResult = Assert.IsType<OkObjectResult>(result);
             var returnProducts = Assert.IsAssignableFrom<IEnumerable<Product>>(OkResult.Value);
             Assert.Equal(2, ((List<Product>)returnProducts).Count);
@@ -40,8 +40,8 @@ namespace EShopService_drugaedycja.Controllers
         {
             DateTime dateTime = DateTime.Now;
             Product product = new Product { Id = 0, Name = "Car", Price = 25000, Created_at = dateTime, Uploaded_at = dateTime};
-            _productServiceMock.Setup(service => service.GetProductById(0)).Returns(product);
-            var result = _controller.GetProductById(0);
+            _productServiceMock.Setup(service => service.GetProductByIdAsync(0)).Returns(product);
+            var result = _controller.GetProductByIdAsync(0);
             var OkResult = Assert.IsType<OkObjectResult>(result);
 
             var productResult = Assert.IsType<Product>(OkResult.Value);

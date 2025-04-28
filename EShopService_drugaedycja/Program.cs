@@ -30,7 +30,7 @@ public partial class Program
             var seeder = new EShopSeeder(context);
             await seeder.Initialize();
         }
-        // Configure the HTTP request pipeline.â
+        // Configure the HTTP request pipeline
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
