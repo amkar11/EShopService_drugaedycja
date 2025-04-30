@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EShopService_drugaedycja", "EShopService_drugaedycja\EShopService_drugaedycja.csproj", "{D212155E-2D2F-4EF0-B67D-95B9D427CD9A}"
 EndProject
@@ -16,6 +16,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EShopService.Tests", "EShopService.Tests\EShopService.Tests.csproj", "{FC6028A6-9591-4857-8025-1D45C40AC0D0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EShopService.IntegrationTests", "EShopService.IntegrationTests\EShopService.IntegrationTests.csproj", "{561F2FE8-2F0A-4F78-B938-61FAD8781611}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "User.Application", "User.Application\User.Application.csproj", "{527EAF00-99EC-4336-863F-817D1CD89E8F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "User", "User", "{E9005D13-ADE5-48B6-81B6-0868698EAF93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "User.Domain", "User.Domain\User.Domain.csproj", "{F9E9D155-B23E-45B0-A8EB-20EDBC983528}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserService", "UserService\UserService.csproj", "{C0ACD48E-C62A-4AEB-B62E-3D031315BF7D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,8 +59,25 @@ Global
 		{561F2FE8-2F0A-4F78-B938-61FAD8781611}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{561F2FE8-2F0A-4F78-B938-61FAD8781611}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{561F2FE8-2F0A-4F78-B938-61FAD8781611}.Release|Any CPU.Build.0 = Release|Any CPU
+		{527EAF00-99EC-4336-863F-817D1CD89E8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{527EAF00-99EC-4336-863F-817D1CD89E8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{527EAF00-99EC-4336-863F-817D1CD89E8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{527EAF00-99EC-4336-863F-817D1CD89E8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9E9D155-B23E-45B0-A8EB-20EDBC983528}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9E9D155-B23E-45B0-A8EB-20EDBC983528}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9E9D155-B23E-45B0-A8EB-20EDBC983528}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9E9D155-B23E-45B0-A8EB-20EDBC983528}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0ACD48E-C62A-4AEB-B62E-3D031315BF7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0ACD48E-C62A-4AEB-B62E-3D031315BF7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0ACD48E-C62A-4AEB-B62E-3D031315BF7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0ACD48E-C62A-4AEB-B62E-3D031315BF7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{527EAF00-99EC-4336-863F-817D1CD89E8F} = {E9005D13-ADE5-48B6-81B6-0868698EAF93}
+		{F9E9D155-B23E-45B0-A8EB-20EDBC983528} = {E9005D13-ADE5-48B6-81B6-0868698EAF93}
+		{C0ACD48E-C62A-4AEB-B62E-3D031315BF7D} = {E9005D13-ADE5-48B6-81B6-0868698EAF93}
 	EndGlobalSection
 EndGlobal
