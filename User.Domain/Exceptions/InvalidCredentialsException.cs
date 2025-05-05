@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace User.Domain
 {
-    internal class InvalidCredentialsExceptions
+    public class InvalidCredentialsException : Exception
     {
+        public InvalidCredentialsException() : base("Incorect password or login") { }
     }
 }

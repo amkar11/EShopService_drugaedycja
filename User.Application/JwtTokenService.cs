@@ -4,6 +4,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using User.Domain;
+using User.Domain.Models;
 namespace User.Application
 {
     public class JwtTokenService : IJwtTokenService

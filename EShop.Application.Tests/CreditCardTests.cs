@@ -1,16 +1,17 @@
 using System;
 using Xunit;
 using EShop.Application;
+using EShop.Domain.CreditCardProvider;
 namespace EShop.Application.Tests
 {
-    public class UnitTest1
+    public class CreditCardTests
     {
         [Fact]
         public void ValidateCard_ValidVisaCard_ReturnsTrue()
         {
             // Arrange
             var app = new CreditCardService();
-            string validCardNumber = "4111 1111 1111 1111";
+            string validCardNumber = "4111111111111111";
 
             // Act
             var result = app.ValidateCard(validCardNumber);
@@ -20,17 +21,35 @@ namespace EShop.Application.Tests
         }
 
         [Fact]
-        public void ValidateCard_InvalidCard_WithLetters_ReturnsFalse()
+        public void ValidateCard_InvalidCard_WithLetters_ThrowsCardNumberInvalidException()
         {
             // Arrange
             var app = new CreditCardService();
             string invalidCardNumber = "4111 1111 11a1 1111";
 
             // Act
-            var result = app.ValidateCard(invalidCardNumber);
+            Func<bool> result = () => app.ValidateCard(invalidCardNumber);
 
             // Assert
-            Assert.False(result);
+            Assert.Throws<CardNumberInvalidException>(() => result());
+        }
+
+        [Fact(DisplayName = "ValidateCard_InvalidCardLength < 13 ThrowsCreditNumberTooShortException")]
+        public void ValidateCard_InvalidCardLength_ThrowsCreditNumberTooShortException()
+        {
+            var app = new CreditCardService();
+            string invalidCardNumber = "123456789";
+            Func<bool> result = () => app.ValidateCard(invalidCardNumber);
+            Assert.Throws<CreditNumberTooShortException>(() => result());
+        }
+
+        [Fact(DisplayName = "ValidateCard_InvalidCardLength > 19 ThrowsCreditNumberTooLongException")]
+        public void ValidateCard_InvalidCardLength_ThrowsCreditNumberTooLongException()
+        {
+            var app = new CreditCardService();
+            string invalidCardNumber = "12345678901234567890000";
+            Func<bool> result = () => app.ValidateCard(invalidCardNumber);
+            Assert.Throws<CreditNumberTooLongException>(() => result());
         }
 
         [Fact]
@@ -114,7 +133,7 @@ namespace EShop.Application.Tests
             var result = app.GetCardType(unknownCardNumber);
 
             // Assert
-            Assert.Equal(unknownCardNumber, result);
+            Assert.Equal(unknownCardNumber.Replace(" ", "").Replace("-", ""), result);
         }
 
     }

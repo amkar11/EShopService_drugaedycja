@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace User.Domain.Models
 {
-    internal class LoginRequest
+    public class LoginRequest
     {
+        public string Username { get; set; } = default!;
+        public string Password { get; set; } = default!;
     }
 }
