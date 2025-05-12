@@ -4,6 +4,7 @@ using EShop.Domain;
 using EShop.Domain.ProductProvidersExceptions;
 using System.Net;
 using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Authorization;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace EShopService_drugaedycja.Controllers
@@ -45,7 +46,9 @@ namespace EShopService_drugaedycja.Controllers
         }
 
         // POST api/<ValuesController>
+        
         [HttpPost]
+        [Authorize(Policy = "EmployeeOnly")]
         public async Task<IActionResult> AddProductAsync([FromBody] Product product)
         {
             try
@@ -63,6 +66,7 @@ namespace EShopService_drugaedycja.Controllers
 
         // PUT api/<ValuesController>/5
         [HttpPut("{id}")]
+        [Authorize(Policy = "EmployeeOnly")]
         public async Task<IActionResult> ChangeProductAsync(int id, [FromBody] Product product)
         {
             if (id != product.Id) return BadRequest("Id you entered and actual product Id does not match!");
@@ -74,6 +78,7 @@ namespace EShopService_drugaedycja.Controllers
         }
 
         [HttpPatch("{id}")]
+        [Authorize(Policy = "EmployeeOnly")]
         public async Task<IActionResult> ChangeProductPartiallyAsync(int id, [FromBody] JsonPatchDocument<ProductDTO> patchDoc)
         {
             if (patchDoc == null) return BadRequest("patchDoc doesn`t exist!");
@@ -107,6 +112,7 @@ namespace EShopService_drugaedycja.Controllers
 
         // DELETE api/<ValuesController>/5
         [HttpDelete("{id}")]
+        [Authorize(Policy = "EmployeeOnly")]
         public async Task<IActionResult> DeleteProductAsync(int id)
         {
             try

@@ -5,10 +5,8 @@ WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
 
-# Копіюємо рішення
 COPY *.sln ./
 
-# Копіюємо всі csproj у відповідні папки
 COPY EShopService_drugaedycja/*.csproj ./EShopService_drugaedycja/
 COPY EShop.Application/*.csproj ./EShop.Application/
 COPY EShop.Domain/*.csproj ./EShop.Domain/
@@ -20,7 +18,6 @@ COPY User.Application/*.csproj ./User.Application/
 COPY User.Domain/*.csproj ./User.Domain/
 COPY UserService/*.csproj ./UserService/
 
-# Тепер restore буде працювати
 RUN dotnet restore
 
 COPY . .

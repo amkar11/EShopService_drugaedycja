@@ -1,5 +1,3 @@
-version: '3.9'
-
 # Comments are provided throughout this file to help you get started.
 # If you need more help, visit the Docker Compose reference guide at
 # https://docs.docker.com/go/compose-spec-reference/
@@ -20,12 +18,13 @@ services:
       context: .
       dockerfile: EShopService_drugaedycja/Dockerfile
       target: runtime
+    volumes:
+        - serverdata:/app
     depends_on:
        - redis
     ports:
       - 8080:8080
       - 8081:8081
-  
 # The commented out section below is an example of how to define a PostgreSQL
 # database that your application can use. `depends_on` tells Docker Compose to
 # start the database before your application. The `db-data` volume persists the
@@ -66,8 +65,14 @@ services:
       context: .
       dockerfile: UserService/Dockerfile
       target: runtime
+    volumes:
+      - userdata:/app
     ports:
       - "8082:8080"
       - "8083:8081"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+
+volumes:
+  serverdata:
+  userdata:
