@@ -19,6 +19,7 @@ public partial class Program
     public static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+
         // Add services to the container.
         builder.Services.AddDbContext<ApplicationDbContext>(options =>
             options.UseInMemoryDatabase("MyDB").EnableSensitiveDataLogging());
@@ -30,6 +31,7 @@ public partial class Program
             var configuration = ConfigurationOptions.Parse("localhost:6379", true);
             return ConnectionMultiplexer.Connect(configuration);
         });
+
 
         builder.Services.AddSingleton<IRedisCacheService, RedisCacheService>();
         builder.Services.AddHostedService<RedisCleanupService>();

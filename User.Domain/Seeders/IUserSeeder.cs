@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using User.Domain.Repositories;
 
-namespace User.Application
+namespace User.Domain.Seeders
 {
-    public interface ILoginService
+    public interface IUserSeeder
     {
-        Task<string> LoginAsync(string name, string password);
+        Task Initialize();
     }
 }

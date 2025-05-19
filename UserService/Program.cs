@@ -10,12 +10,13 @@ using Microsoft.OpenApi.Models;
 using User.Application;
 using User.Domain.Models;
 using User.Domain.Repositories;
+using User.Domain.Seeders;
 
 namespace UserService
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -57,7 +58,12 @@ namespace UserService
             });
             builder.Services.AddDbContext<ApplicationDbContext>(options => 
                 options.UseInMemoryDatabase("UserDatabase").EnableSensitiveDataLogging());
+            builder.Services.AddScoped<IUserDataDAO, UserDataDAO>();
+            builder.Services.AddScoped<IUserDataService, UserDataService>();
             builder.Services.AddTransient<ILoginService, LoginService>();
+            builder.Services.AddSingleton<Queue<string>>();
+            builder.Services.AddAutoMapper(typeof(MappingProfile));
+
             builder.Services.AddTransient<IJwtTokenService, JwtTokenService>();
             // JWT config
             var jwtSettings = builder.Configuration.GetSection("Jwt");
@@ -104,7 +110,12 @@ namespace UserService
             });
 
             var app = builder.Build();
-
+            using (var scope = app.Services.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                var seeder = new UserSeeder(context);
+                await seeder.Initialize();
+            }
             
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
